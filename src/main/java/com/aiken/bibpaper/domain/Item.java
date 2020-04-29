@@ -15,7 +15,7 @@ public class Item {
     @Max(value = 10000, message = "10000以下の数値を入力してください。")
     private float price;
 
-    @Size(max = 50, message = "ベーダー名は50文字を超えないでください。")
+    @Size(max = 50, message = "ベンダー名は50文字を超えないでください。")
     private String vendor;
 
     public Long getId() {
