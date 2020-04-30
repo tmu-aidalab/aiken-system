@@ -11,7 +11,7 @@ public class Item {
     @NotBlank(message = "商品名を記入してください。")
     private String name;
 
-    @Min(value = 10, message = "10以上の数値を入力してください。")
+    @Min(value = 0, message = "0以上の数値を入力してください。")
     @Max(value = 10000, message = "10000以下の数値を入力してください。")
     private float price;
 
