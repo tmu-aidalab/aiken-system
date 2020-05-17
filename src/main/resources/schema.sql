@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS user (
   register_date timestamp,
   graduate smallint,
   last_login timestamp,
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -22,28 +22,28 @@ CREATE TABLE IF NOT EXISTS bibpaper (
   bibtex_source varchar(2000),
   bibitem_source varchar(1000),
   remark varchar(600),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS category (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   category varchar(60),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS author (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   author varchar(60),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS hash_tag (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   hash_tag varchar(300),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS bibpaper_register_log (
   user_id bigint(20),
   time_stamp timestamp,
   bibpaper_id bigint(20),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS bibpaper_update_log (
   user_id bigint(20),
   time_stamp timestamp,
   bibpaper_id bigint(20),
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS view_log (
   bibpaper_id bigint(20),
   search_id bigint(20),
   view_from tinyint,
-  delete_flag boolean,
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -81,6 +81,7 @@ CREATE TABLE IF NOT EXISTS search_log (
   user_id bigint(20),
   time_stamp timestamp,
   query varchar(300),
-  delete_flag boolean,
+  search_result varchar(300),
+  delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
