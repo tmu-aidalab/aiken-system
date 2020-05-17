@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiken.bibpaper.mapper.BibpaperMapper">
+  <select id="findAll" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark
+                    from bibpaper
+                    where delete_flag=FALSE
+  </select>
+
+  <select id="findOne" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark
+                    from bibpaper
+                    where id= #{id} and delete_flag=FALSE
+  </select>
+
+  <insert id="save" useGeneratedKeys="true" keyProperty="id">
+    insert into bibpaper(category, title, authors, abstract, descript, hash_tag,
+                          hyperlink, bibtex_source, bibitem_source, remark
+                        ) values(#{category}, #{title}, #{authors}, #{abstract},
+                          #{descript}, #{hash_tag}, #{hyperlink}, #{bibtex_source},
+                          #{bibitem_source}, #{remark}
+                        )
+  </insert>
+
+  <update id="update">
+    update bibpaper set category=#{category}, title=#{title}, authors=#{authors},
+                                  abstract=#{abstract}, descript=#{descript},
+                                  hash_tag=#{hash_tag}, hyperlink=#{hyperlink},
+                                  bibtex_source=#{bibtex_source}, bibitem_source=#{bibitem_source},
+                                  remark=#{remark} where id= #{id}
+  </update>
+
+  <update id="delete">
+    update bibpaper set delete_flag=TRUE where id=#{id}
+  </update>
+
+  <select id="findBibpaper" parameterType="com.aiken.bibpaper.domain.sort.BibpaperSort" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select id, category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source,
+                      bibitem_source, remark
+                      from bibpaper
+                      where title like '%${bibpaperSort.title}%' and delete_flag=FALSE
+                      order by ${bibpaperSort.key} ${bibpaperSort.sorting}
+  </select>
+
+  <select id="findRecentViewBibpaper" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark
+                      from bibpaper inner join view_log on bibpaper.id = view_log.bibpaper_id
+                      where bibpaper.delete_flag=FALSE
+                      order by view_log.time_stamp ${sorting}
+  </select>
+
+  <select id="findRecentRegisterBibpaper" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark
+                      from bibpaper inner join bibpaper_register_log on bibpaper.id = bibpaper_register_log.bibpaper_id
+                      where bibpaper.delete_flag=FALSE
+                      order by bibpaper_register_log.time_stamp ${sorting}
+  </select>
+
+  <select id="findRecentUpdateBibpaper" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark
+                      from bibpaper inner join bibpaper_update_log on bibpaper.id = bibpaper_update_log.bibpaper_id
+                      where bibpaper.delete_flag=FALSE
+                      order by bibpaper_update_log.time_stamp ${sorting}
+  </select>
+
+  <select id="findViewLogCount" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
+                      bibitem_source, bibpaper.remark,
+                      count(time_stamp)
+                      from view_log inner join bibpaper on view_log.bibpaper_id = bibpaper.id
+                      where bibpaper.delete_flag=FALSE
+                      group by view_log.bibpaper_id
+                      order by count(time_stamp) ${sorting}
+  </select>
+
+</mapper>
