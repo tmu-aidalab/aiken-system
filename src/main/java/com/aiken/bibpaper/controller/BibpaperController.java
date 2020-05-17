@@ -18,6 +18,7 @@ import java.util.Map;
 
 import com.aiken.bibpaper.service.BibpaperService;
 import com.aiken.bibpaper.domain.sort.BibpaperSort;
+import com.aiken.bibpaper.domain.sort.BibpaperSorter;
 
 @Controller
 @RequestMapping("/")
@@ -43,58 +44,39 @@ public class BibpaperController {
             Model model) {
         String key = "title";
         BibpaperSort params = new BibpaperSort();
-        if (sorting.equals("desc")) {
-            sorting = "DESC";
-        } else {
-            sorting = "ASC";
-        }
+        sorting = BibpaperSorter.convertSortMethod(sorting);
         params.setTitle(title);
         params.setKey(key);
         params.setSorting(sorting);
         model.addAttribute("bibpapers", bibpaperService.findBibpaper(params));
+        params = null;
         return "index";
     }
 
     @GetMapping("search/view/{sorting}")
     public String searchRecentView(@PathVariable String sorting, Model model) {
-        if (sorting.equals("desc")) {
-            sorting = "DESC";
-        } else {
-            sorting = "ASC";
-        }
+        sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentViewBibpaper(sorting));
         return "index";
     }
 
     @GetMapping("search/regist/{sorting}")
     public String searchRecentRegister(@PathVariable String sorting, Model model) {
-        if (sorting.equals("desc")) {
-            sorting = "DESC";
-        } else {
-            sorting = "ASC";
-        }
+        sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentRegisterBibpaper(sorting));
         return "index";
     }
 
     @GetMapping("search/update/{sorting}")
     public String searchRecentUpdate(@PathVariable String sorting, Model model) {
-        if (sorting.equals("desc")) {
-            sorting = "DESC";
-        } else {
-            sorting = "ASC";
-        }
+        sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentUpdateBibpaper(sorting));
         return "index";
     }
 
     @GetMapping("search/freq/{sorting}")
     public String searchFrequentView(@PathVariable String sorting, Model model) {
-        if (sorting.equals("desc")) {
-            sorting = "DESC";
-        } else {
-            sorting = "ASC";
-        }
+        sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findViewLogCount(sorting));
         return "index";
     }
