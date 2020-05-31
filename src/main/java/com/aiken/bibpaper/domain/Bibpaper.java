@@ -1,19 +1,20 @@
 package com.aiken.bibpaper.domain;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
 public class Bibpaper {
     private Long id;
 
-    @NotBlank(message = "カテゴリを選択してください")
+    @NotNull(message = "カテゴリを選択してください")
     private Long category;
 
     @NotBlank(message = "タイトルを入力してください")
     private String title;
 
-    @NotBlank(message = "著者名を入力してください")
+    @NotNull(message = "著者名を入力してください")
     private List<String> authors;
 
     private String abst;
@@ -21,7 +22,7 @@ public class Bibpaper {
     @NotBlank(message = "概要を入力してください")
     private String descript;
 
-    @NotBlank(message = "ハッシュタグを入力してください")
+    @NotNull(message = "ハッシュタグを入力してください")
     private List<String> hash_tag;
 
     @NotBlank(message = "pdfへのリンクを入力してください")
