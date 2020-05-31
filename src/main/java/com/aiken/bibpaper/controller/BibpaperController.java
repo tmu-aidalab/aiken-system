@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.aiken.bibpaper.service.BibpaperService;
+import com.aiken.bibpaper.domain.Bibpaper;
 import com.aiken.bibpaper.domain.sort.BibpaperSort;
 import com.aiken.bibpaper.domain.sort.BibpaperSorter;
 
@@ -31,6 +32,11 @@ public class BibpaperController {
     public String index(Model model) {
         model.addAttribute("bibpapers", bibpaperService.findAll());
         return "index";
+    }
+
+    @GetMapping("new")
+    public String newBibpaper(@ModelAttribute("bibpaper") Bibpaper bibpaper, Model model) {
+        return "new";
     }
 
     @GetMapping("{id}")
@@ -80,6 +86,17 @@ public class BibpaperController {
         model.addAttribute("bibpapers", bibpaperService.findViewLogCount(sorting));
         return "index";
     }
+
+    @PostMapping
+    public String create(@ModelAttribute("bibpaper") @Validated Bibpaper bibpaper, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "new";
+        } else {
+            bibpaperService.save(bibpaper);
+            return "redirect:/";
+        }
+    }
+
     /*
      * PostMapping PutMapping DeleteMapping の参考となるように残しておく
      * 
