@@ -66,4 +66,9 @@ public class BibpaperService {
         return bibpaperMapper.findViewLogCount(sorting);
     }
 
+    @Transactional
+    public List<Bibpaper> findSearchRecentRegisterBibpaper(BibpaperSort params) {
+        return bibpaperMapper.findSearchRecentRegisterBibpaper(params);
+    }
+
 }

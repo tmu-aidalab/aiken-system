@@ -78,4 +78,13 @@
                       order by count(time_stamp) ${sorting}
   </select>
 
+<!--検索と登録順-->
+  <select id="findSearchRecentRegisterBibpaper" parameterType="com.aiken.bibpaper.domain.sort.BibpaperSort" resultType="com.aiken.bibpaper.domain.Bibpaper">
+    select bibpaper.id, bibpaper.title
+                      from bibpaper  
+                      inner join bibpaper_register_log on bibpaper.id = bibpaper_register_log.bibpaper_id
+                      where title like '%${bibpaperSort.title}%'
+                      order by bibpaper_register_log.time_stamp ${bibpaperSort.sorting}
+  </select>
+
 </mapper>

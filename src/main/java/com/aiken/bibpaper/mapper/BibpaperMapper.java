@@ -30,4 +30,8 @@ public interface BibpaperMapper {
 
     List<Bibpaper> findViewLogCount(String sorting);
 
+    List<Bibpaper> findSearchRecentRegisterBibpaper(@Param("bibpaperSort") BibpaperSort bibpaperSort);
+
+
+
 }

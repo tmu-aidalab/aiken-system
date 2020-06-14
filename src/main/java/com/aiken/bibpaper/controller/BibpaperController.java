@@ -39,6 +39,7 @@ public class BibpaperController {
         return "index";
     }
 
+    /*
     @GetMapping("search/bib/{title}/{sorting}")
     public String searchBibpaper(@PathVariable("title") String title, @PathVariable("sorting") String sorting,
             Model model) {
@@ -49,6 +50,20 @@ public class BibpaperController {
         params.setKey(key);
         params.setSorting(sorting);
         model.addAttribute("bibpapers", bibpaperService.findBibpaper(params));
+        params = null;
+        return "index";
+    }
+     */
+    @GetMapping("search/bib/{title}/{sorting}")
+    public String searchRecentRegister(@PathVariable("title") String title, @PathVariable("sorting") String sorting,
+            Model model) {
+        String key = "title";
+        BibpaperSort params = new BibpaperSort();
+        sorting = BibpaperSorter.convertSortMethod(sorting);
+        params.setTitle(title);
+        params.setKey(key);
+        params.setSorting(sorting);
+        model.addAttribute("bibpapers", bibpaperService.findSearchRecentRegisterBibpaper(params));
         params = null;
         return "index";
     }
