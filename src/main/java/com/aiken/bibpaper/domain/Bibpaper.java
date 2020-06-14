@@ -15,7 +15,7 @@ public class Bibpaper {
     private String title;
 
     @NotNull(message = "著者名を入力してください")
-    private List<String> authors;
+    private String authors;
 
     private String abst;
 
@@ -23,7 +23,7 @@ public class Bibpaper {
     private String descript;
 
     @NotNull(message = "ハッシュタグを入力してください")
-    private List<String> hash_tag;
+    private String hash_tag;
 
     @NotBlank(message = "pdfへのリンクを入力してください")
     private String hyperlink;
@@ -58,11 +58,11 @@ public class Bibpaper {
         this.title = title;
     }
 
-    public List<String> getAuthors() {
+    public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(List<String> authors) {
+    public void setAuthors(String authors) {
         this.authors = authors;
     }
 
@@ -82,11 +82,11 @@ public class Bibpaper {
         this.descript = descript;
     }
 
-    public List<String> getHash_tag() {
+    public String getHash_tag() {
         return hash_tag;
     }
 
-    public void setHash_tag(List<String> hash_tag) {
+    public void setHash_tag(String hash_tag) {
         this.hash_tag = hash_tag;
     }
 

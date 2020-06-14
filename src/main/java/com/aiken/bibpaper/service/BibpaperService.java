@@ -66,4 +66,8 @@ public class BibpaperService {
         return bibpaperMapper.findViewLogCount(sorting);
     }
 
+    @Transactional
+    public void authorRegist(String author) {
+        bibpaperMapper.authorRegist(author);
+    }
 }

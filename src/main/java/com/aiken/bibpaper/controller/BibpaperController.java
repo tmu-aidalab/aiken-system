@@ -93,7 +93,14 @@ public class BibpaperController {
         if (result.hasErrors()) {
             return "new";
         } else {
+            // Bibpaper x = new Bibpaper();
+            String[] authorsList = bibpaper.getAuthors().split(",", 0);
+            for (String author : authorsList) {
+                bibpaperService.authorRegist(author);
+            }
+
             bibpaperService.save(bibpaper);
+            // x = null;
             return "redirect:/";
         }
     }

@@ -78,4 +78,9 @@
                       order by count(time_stamp) ${sorting}
   </select>
 
+  <insert id="authorRegist" useGeneratedKeys="true">
+    insert into author(author) SELECT (#{author}) FROM dual
+    where NOT EXISTS (select * from author where author = #{author})
+  </insert>
+
 </mapper>
