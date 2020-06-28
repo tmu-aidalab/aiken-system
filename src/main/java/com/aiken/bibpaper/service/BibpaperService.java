@@ -70,4 +70,9 @@ public class BibpaperService {
     public void authorRegist(String author) {
         bibpaperMapper.authorRegist(author);
     }
+
+    @Transactional
+    public void hashTagRegist(String hashTag) {
+        bibpaperMapper.hashTagRegist(hashTag);
+    }
 }

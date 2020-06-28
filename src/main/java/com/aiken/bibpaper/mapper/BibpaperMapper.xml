@@ -83,4 +83,9 @@
     where NOT EXISTS (select * from author where author = #{author})
   </insert>
 
+  <insert id="hashTagRegist" useGeneratedKeys="true">
+    insert into hash_tag(hash_tag) SELECT (#{hashTag}) FROM dual
+    where NOT EXISTS (select * from hash_tag where hash_tag = #{hashTag})
+  </insert>
+
 </mapper>

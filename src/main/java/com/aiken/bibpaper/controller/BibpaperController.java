@@ -99,6 +99,11 @@ public class BibpaperController {
                 bibpaperService.authorRegist(author);
             }
 
+            String[] hashTagList = bibpaper.getHash_tag().split(",", 0);
+            for (String hashTag : hashTagList) {
+                bibpaperService.hashTagRegist(hashTag);
+            }
+
             bibpaperService.save(bibpaper);
             // x = null;
             return "redirect:/";

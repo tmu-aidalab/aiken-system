@@ -32,4 +32,6 @@ public interface BibpaperMapper {
 
     void authorRegist(String author);
 
+    void hashTagRegist(String hashTag);
+
 }
