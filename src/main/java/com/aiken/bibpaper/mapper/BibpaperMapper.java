@@ -22,16 +22,16 @@ public interface BibpaperMapper {
 
     List<Bibpaper> findBibpaper(@Param("bibpaperSort") BibpaperSort bibpaperSort);
 
-    List<Bibpaper> findRecentViewBibpaper(String sorting);
+    List<Bibpaper> findRecentViewBibpaper(@Param("sorting") String sorting, @Param("search_key") String search_key,
+            @Param("keyword") String keyword);
 
-    List<Bibpaper> findRecentRegisterBibpaper(String sorting);
+    List<Bibpaper> findRecentRegisterBibpaper(@Param("sorting") String sorting, @Param("search_key") String search_key,
+            @Param("keyword") String keyword);
 
-    List<Bibpaper> findRecentUpdateBibpaper(String sorting);
+    List<Bibpaper> findRecentUpdateBibpaper(@Param("sorting") String sorting, @Param("search_key") String search_key,
+            @Param("keyword") String keyword);
 
-    List<Bibpaper> findViewLogCount(String sorting);
-
-    List<Bibpaper> findSearchRecentRegisterBibpaper(@Param("bibpaperSort") BibpaperSort bibpaperSort);
-
-
+    List<Bibpaper> findViewLogCount(@Param("sorting") String sorting, @Param("search_key") String search_key,
+            @Param("keyword") String keyword);
 
 }
