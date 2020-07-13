@@ -1,7 +1,11 @@
 package com.aiken.bibpaper.domain;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import java.util.List;
 
@@ -9,29 +13,40 @@ public class Bibpaper {
     private Long id;
 
     @NotNull(message = "カテゴリを選択してください")
+    @Min(value = 1, message = "1以上の整数を入力してください")
+    @Max(value = 10000, message = "10000以下の整数を入力してください")
     private Long category;
 
     @NotBlank(message = "タイトルを入力してください")
+    @Size(max = 600, message = "タイトルは600文字を超えないでください")
     private String title;
 
     @NotNull(message = "著者名を入力してください")
+    @Size(max = 200, message = "著者名は200文字を超えないでください")
     private String authors;
 
+    @Size(max = 900, message = "アブストラクトは900文字を超えないでください")
     private String abst;
 
     @NotBlank(message = "概要を入力してください")
+    @Size(max = 600, message = "概要は600文字を超えないでください")
     private String descript;
 
     @NotNull(message = "ハッシュタグを入力してください")
+    @Size(max = 200, message = "ハッシュタグは200文字を超えないでください")
     private String hash_tag;
 
     @NotBlank(message = "pdfへのリンクを入力してください")
+    @Size(max = 300, message = "ハイパーリンクは300文字を超えないでください")
     private String hyperlink;
 
+    @Size(max = 2000, message = "bibtexは2000文字を超えないでください")
     private String bibtex_source;
 
+    @Size(max = 1000, message = "bibitemは1000文字を超えないでください")
     private String bibitem_source;
 
+    @Size(max = 600, message = "備考は600文字を超えないでください")
     private String remark;
 
     public Long getId() {

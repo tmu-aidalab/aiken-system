@@ -45,14 +45,14 @@
                 <div class="form-group row">
                   <label class="col-md-2 control-label">アブストラクト</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" name="abstract" th:value="*{abstract}"></textarea>
+                    <textarea class="form-control" type="text" th:field="*{abstract}" name="abstract" th:value="*{abstract}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('abstract')}" th:errors="*{abstract}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 control-label">概要</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" name="descript" th:value="*{descript}"></textarea>
+                    <textarea class="form-control" type="text" th:field="*{descript}" name="descript" th:value="*{descript}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('descript')}" th:errors="*{descript}"></div>
                   </div>
                 </div>
@@ -87,7 +87,7 @@
                 <div class="form-group row">
                   <label class="col-md-2 control-label">備考</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" name="remark" th:value="*{remark}"></textarea>
+                    <textarea class="form-control" type="text" th:field="*{remark}" name="remark" th:value="*{remark}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}"></div>
                   </div>
                 </div>
