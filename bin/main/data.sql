@@ -1,31 +1,31 @@
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'bbb', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
-INSERT into bibpaper (category, title, authors, abstract, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
+INSERT into bibpaper (category, title, authors, abst, descript, hash_tag, hyperlink, bibtex_source, bibitem_source, remark) 
   values ( 1, 'aaa', 'bbb', 'ccc', 'ddd', 'eee', 'fff', 'ggg', 'hhh', 'iii');
 
 INSERT into bibpaper_register_log (user_id, time_stamp, bibpaper_id) values ( 1, '1999-01-08 04:05:06', 1 );

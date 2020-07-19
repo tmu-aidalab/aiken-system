@@ -12,11 +12,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 import java.util.Map;
 
 import com.aiken.bibpaper.service.BibpaperService;
+import com.aiken.bibpaper.domain.Bibpaper;
 import com.aiken.bibpaper.domain.sort.BibpaperSort;
 import com.aiken.bibpaper.domain.sort.BibpaperSorter;
 
@@ -31,6 +33,11 @@ public class BibpaperController {
     public String index(Model model) {
         model.addAttribute("bibpapers", bibpaperService.findAll());
         return "index";
+    }
+
+    @GetMapping("new")
+    public String newBibpaper(@ModelAttribute("bibpaper") Bibpaper bibpaper, Model model) {
+        return "new";
     }
 
     @GetMapping("{id}")
@@ -80,19 +87,41 @@ public class BibpaperController {
         model.addAttribute("bibpapers", bibpaperService.findViewLogCount(sorting));
         return "index";
     }
+
+    @PostMapping
+    public String registerBibpaper(@ModelAttribute("bibpaper") @Validated Bibpaper bibpaper, BindingResult result,
+            Model model) {
+        if (result.hasErrors()) {
+            return "new";
+        } else {
+            String[] authorsList = bibpaper.getAuthors().split(",", 0);
+            for (String author : authorsList) {
+                bibpaperService.registerAuthor(author);
+            }
+
+            String[] hashTagList = bibpaper.getHash_tag().split(",", 0);
+            for (String hashTag : hashTagList) {
+                bibpaperService.registerHashtag(hashTag);
+            }
+
+            bibpaperService.save(bibpaper);
+            return "redirect:/";
+        }
+    }
+
     /*
      * PostMapping PutMapping DeleteMapping の参考となるように残しておく
-     * 
+     *
      * @PostMapping public String create(@ModelAttribute("item") @Validated Item
      * item, BindingResult result, Model model) { if (result.hasErrors()) { return
      * "new"; } else { itemService.save(item); return "redirect:/items"; } }
-     * 
+     *
      * @PutMapping("{id}") public String update(@PathVariable Long
      * id, @ModelAttribute("item") @Validated Item item, BindingResult result, Model
      * model) { if (result.hasErrors()) { model.addAttribute("item", item); return
      * "edit"; } else { item.setId(id); itemService.update(item); return
      * "redirect:/items"; } }
-     * 
+     *
      * @DeleteMapping("{id}") public String delete(@PathVariable Long id) {
      * itemService.delete(id); return "redirect:/items"; }
      */

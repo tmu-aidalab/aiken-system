@@ -15,7 +15,7 @@
     <div class="container">
       <div class="card card-primary mb-3">
           <div class="card-header">
-            <h5 class="card-title">論文リスト<a href="/bibpaper/new" class="btn btn-success float-right">新規</a></h5>
+            <h5 class="card-title">論文リスト<a href="/new" class="btn btn-success float-right">新規</a></h5>
           </div>
           <div class="card-body" th:if="!${bibpapers.size()}">
             <p>論文データがありません。</p>
@@ -42,7 +42,7 @@
                   <td th:text="*{category}"></td>
                   <td th:text="*{title}"></td>
                   <td th:text="*{authors}"></td>
-                  <td th:text="*{abstract}"></td>
+                  <td th:text="*{abst}"></td>
                   <td th:text="*{descript}"></td>
                   <td th:text="*{hash_tag}"></td>
                   <td th:text="*{hyperlink}"></td>
