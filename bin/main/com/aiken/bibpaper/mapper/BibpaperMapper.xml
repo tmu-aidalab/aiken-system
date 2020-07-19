@@ -44,11 +44,13 @@
                       order by ${bibpaperSort.key} ${bibpaperSort.sorting}
   </select>
 
+
   <select id="findRecentViewBibpaper" resultType="com.aiken.bibpaper.domain.Bibpaper">
     select bibpaper.id, bibpaper.category, bibpaper.title, bibpaper.authors, bibpaper.abstract, bibpaper.descript, bibpaper.hash_tag, bibpaper.hyperlink, bibpaper.bibtex_source,
                       bibitem_source, bibpaper.remark
                       from bibpaper inner join view_log on bibpaper.id = view_log.bibpaper_id
                       where bibpaper.delete_flag=FALSE
+                      and bibpaper.${search_key} like '%${keyword}%'
                       order by view_log.time_stamp ${sorting}
   </select>
 
@@ -57,6 +59,7 @@
                       bibitem_source, bibpaper.remark
                       from bibpaper inner join bibpaper_register_log on bibpaper.id = bibpaper_register_log.bibpaper_id
                       where bibpaper.delete_flag=FALSE
+                      and bibpaper.${search_key} like '%${keyword}%'
                       order by bibpaper_register_log.time_stamp ${sorting}
   </select>
 
@@ -65,6 +68,7 @@
                       bibitem_source, bibpaper.remark
                       from bibpaper inner join bibpaper_update_log on bibpaper.id = bibpaper_update_log.bibpaper_id
                       where bibpaper.delete_flag=FALSE
+                      and bibpaper.${search_key} like '%${keyword}%'
                       order by bibpaper_update_log.time_stamp ${sorting}
   </select>
 
@@ -74,8 +78,10 @@
                       count(time_stamp)
                       from view_log inner join bibpaper on view_log.bibpaper_id = bibpaper.id
                       where bibpaper.delete_flag=FALSE
+                      and bibpaper.${search_key} like '%${keyword}%'
                       group by view_log.bibpaper_id
                       order by count(time_stamp) ${sorting}
   </select>
+
 
 </mapper>
