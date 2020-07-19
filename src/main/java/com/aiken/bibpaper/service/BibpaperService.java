@@ -67,12 +67,12 @@ public class BibpaperService {
     }
 
     @Transactional
-    public void authorRegist(String author) {
-        bibpaperMapper.authorRegist(author);
+    public void registerAuthor(String author) {
+        bibpaperMapper.registerAuthor(author);
     }
 
     @Transactional
-    public void hashTagRegist(String hashTag) {
-        bibpaperMapper.hashTagRegist(hashTag);
+    public void registerHashtag(String hashTag) {
+        bibpaperMapper.registerHashtag(hashTag);
     }
 }

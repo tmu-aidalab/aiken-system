@@ -89,40 +89,39 @@ public class BibpaperController {
     }
 
     @PostMapping
-    public String create(@ModelAttribute("bibpaper") @Validated Bibpaper bibpaper, BindingResult result, Model model) {
+    public String registerBibpaper(@ModelAttribute("bibpaper") @Validated Bibpaper bibpaper, BindingResult result,
+            Model model) {
         if (result.hasErrors()) {
             return "new";
         } else {
-            // Bibpaper x = new Bibpaper();
             String[] authorsList = bibpaper.getAuthors().split(",", 0);
             for (String author : authorsList) {
-                bibpaperService.authorRegist(author);
+                bibpaperService.registerAuthor(author);
             }
 
             String[] hashTagList = bibpaper.getHash_tag().split(",", 0);
             for (String hashTag : hashTagList) {
-                bibpaperService.hashTagRegist(hashTag);
+                bibpaperService.registerHashtag(hashTag);
             }
 
             bibpaperService.save(bibpaper);
-            // x = null;
             return "redirect:/";
         }
     }
 
     /*
      * PostMapping PutMapping DeleteMapping の参考となるように残しておく
-     * 
+     *
      * @PostMapping public String create(@ModelAttribute("item") @Validated Item
      * item, BindingResult result, Model model) { if (result.hasErrors()) { return
      * "new"; } else { itemService.save(item); return "redirect:/items"; } }
-     * 
+     *
      * @PutMapping("{id}") public String update(@PathVariable Long
      * id, @ModelAttribute("item") @Validated Item item, BindingResult result, Model
      * model) { if (result.hasErrors()) { model.addAttribute("item", item); return
      * "edit"; } else { item.setId(id); itemService.update(item); return
      * "redirect:/items"; } }
-     * 
+     *
      * @DeleteMapping("{id}") public String delete(@PathVariable Long id) {
      * itemService.delete(id); return "redirect:/items"; }
      */

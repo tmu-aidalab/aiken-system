@@ -30,8 +30,8 @@ public interface BibpaperMapper {
 
     List<Bibpaper> findViewLogCount(String sorting);
 
-    void authorRegist(String author);
+    void registerAuthor(String author);
 
-    void hashTagRegist(String hashTag);
+    void registerHashtag(String hashTag);
 
 }
