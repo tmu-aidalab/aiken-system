@@ -81,11 +81,11 @@ public class Bibpaper {
         this.authors = authors;
     }
 
-    public String getAbstract() {
+    public String getAbst() {
         return abst;
     }
 
-    public void setAbstract(String abst) {
+    public void setAbst(String abst) {
         this.abst = abst;
     }
 

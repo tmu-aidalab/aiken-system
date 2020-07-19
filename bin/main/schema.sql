@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS bibpaper (
   category bigint(20),
   title varchar(600),
   authors varchar(200),
-  abstract varchar(900),
+  abst varchar(900),
   descript varchar(600),
   hash_tag varchar(200),
   hyperlink varchar(300),
