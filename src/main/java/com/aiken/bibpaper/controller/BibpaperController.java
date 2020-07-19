@@ -40,59 +40,41 @@ public class BibpaperController {
         return "index";
     }
 
-    @GetMapping("search/bib/{title}/{sorting}")
-    public String searchBibpaper(@PathVariable("title") String title, @PathVariable("sorting") String sorting,
-            Model model) {
-        String key = "id";
-        BibpaperSort params = new BibpaperSort();
-        sorting = BibpaperSorter.convertSortMethod(sorting);
-        params.setTitle(title);
-        params.setKey(key);
-        params.setSorting(sorting);
-        model.addAttribute("bibpapers", bibpaperService.findBibpaper(params));
-        params = null;
-        return "index";
-    }
-
-    /*
-     * @GetMapping("search/bib/{title}/{sorting}") public String
-     * searchRecentRegister(@PathVariable("title") String
-     * title, @PathVariable("sorting") String sorting, Model model) { String key =
-     * "title"; BibpaperSort params = new BibpaperSort(); sorting =
-     * BibpaperSorter.convertSortMethod(sorting); params.setTitle(title);
-     * params.setKey(key); params.setSorting(sorting);
-     * model.addAttribute("bibpapers",
-     * bibpaperService.findSearchRecentRegisterBibpaper(params)); params = null;
-     * return "index"; }
-     */
-
-    @GetMapping("/search/view/{sorting}")
-    public String searchRecentView(@PathVariable String sorting, Model model,
-            @RequestParam("search_key") String search_key, @RequestParam("keyword") String keyword) {
+    @GetMapping("/search/view")
+    public String searchRecentView(Model model,
+            @RequestParam(name = "search_key", defaultValue = "title") String search_key,
+            @RequestParam(name = "keyword", defaultValue = "") String keyword,
+            @RequestParam(name = "sorting", defaultValue = "DESC") String sorting) {
         sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentViewBibpaper(sorting, search_key, keyword));
         return "index";
     }
 
-    @GetMapping("search/regist/{sorting}")
-    public String searchRecentRegister(@PathVariable String sorting, Model model,
-            @RequestParam("search_key") String search_key, @RequestParam("keyword") String keyword) {
+    @GetMapping("search/regist")
+    public String searchRecentRegister(Model model,
+            @RequestParam(name = "search_key", defaultValue = "title") String search_key,
+            @RequestParam(name = "keyword", defaultValue = "") String keyword,
+            @RequestParam(name = "sorting", defaultValue = "DESC") String sorting) {
         sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentRegisterBibpaper(sorting, search_key, keyword));
         return "index";
     }
 
-    @GetMapping("search/update/{sorting}")
-    public String searchRecentUpdate(@PathVariable String sorting, Model model,
-            @RequestParam("search_key") String search_key, @RequestParam("keyword") String keyword) {
+    @GetMapping("search/update")
+    public String searchRecentUpdate(Model model,
+            @RequestParam(name = "search_key", defaultValue = "title") String search_key,
+            @RequestParam(name = "keyword", defaultValue = "") String keyword,
+            @RequestParam(name = "sorting", defaultValue = "DESC") String sorting) {
         sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findRecentUpdateBibpaper(sorting, search_key, keyword));
         return "index";
     }
 
-    @GetMapping("search/freq/{sorting}")
-    public String searchFrequentView(@PathVariable String sorting, Model model,
-            @RequestParam("search_key") String search_key, @RequestParam("keyword") String keyword) {
+    @GetMapping("search/freq")
+    public String searchFrequentView(Model model,
+            @RequestParam(name = "search_key", defaultValue = "title") String search_key,
+            @RequestParam(name = "keyword", defaultValue = "") String keyword,
+            @RequestParam(name = "sorting", defaultValue = "DESC") String sorting) {
         sorting = BibpaperSorter.convertSortMethod(sorting);
         model.addAttribute("bibpapers", bibpaperService.findViewLogCount(sorting, search_key, keyword));
         return "index";

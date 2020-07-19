@@ -30,9 +30,8 @@
               <!-- <a href="#" id="search_paper" th:href="@{/}"></a> -->
               <input type="submit" name="submit" value="検索" onclick="makeUrl()">
               <select name="key" id="key">
-                <option>bib</option>
-                <option>view</option>
                 <option>regist</option>
+                <option>view</option>
                 <option>update</option>
                 <option>freq</option>
               </select>
@@ -52,13 +51,11 @@
 
                   // 何を基準に検索結果をソートするか
                   if (sortKeyIndex == 0) {
-                    keyMethod = "bib/";
+                    keyMethod = "regist";
                   } else if (sortKeyIndex == 1) {
-                    keyMethod = "view/";
+                    keyMethod = "view";
                   } else if (sortKeyIndex == 2) {
-                    keyMethod = "regist/";
-                  } else if (sortKeyIndex == 3) {
-                    keyMethod = "update/";
+                    keyMethod = "update";
                   } else {
                     keyMethod = "freq/";
                   }
@@ -72,9 +69,8 @@
                     // console.log(sortMethod);
                   }
 
-                  // "search/bib/{title}/{key}/{sorting}"
-                  location.href = "/search/bib/" + text + "/regist" + sortMethod;
-                  // location.href = "/search/" + keyMethod + text +sortMethod;
+                  // /search/view?search_key=title&keyword=(textbox)&sorting=DESC
+                  location.href = "/search/" + keyMethod + "?search_key=title&keyword=" + text + "&sorting=" + sortMethod;
                 }
               </script>
 
