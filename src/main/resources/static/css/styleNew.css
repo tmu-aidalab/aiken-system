@@ -6,6 +6,7 @@
 }
 
 .header > .icon {
+    color: white;
     background-color: blue;
     padding: 10px;
     margin: 15px;
@@ -22,6 +23,24 @@
     text-decoration: underline;
 }
 
-.navbar-header-position {
-    
+.navber {
+    /* 親要素として位置を固定 */
+    position: relative;
+}
+.navbar-header {
+    position: absolute;
+    top: 7px;
+    left: 70px;
+}
+
+.card {
+    position: absolute;
+    top: 150px;
+    left: 70px;
+    width: 85%;
+}
+
+.require_mark {
+    color: red;
+    font-size: 11px;
 }
