@@ -10,10 +10,11 @@
 <body>
   <header>
     <div class="header">
-      <div class="icon">アイコン　⭐️</div>
+      <div class="icon">
+        <span>アイコン　⭐️</span>
+      </div>
       <div class="face">
-        😆
-        <!-- <img src="images/icon.png" alt=""> -->
+       <span>😆</span>
       </div>
     </div>
   </header>
@@ -34,7 +35,8 @@
                 <div class="form-group row">
                     <label class="col-md-2 control-label">カテゴリ名</label>
                     <div class="col-md-10">
-                      <select class="selectpicker" name="key" id="key">
+                      <!-- <input class="form-control" type="text" name="category" th:value="*{category}" /> -->
+                      <select class="selectpicker" type="key" name="key">
                         <option>社会ネットワーク</option>
                         <option>自律分散制御</option>
                         <option>その他</option>
@@ -51,7 +53,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 control-label">著者<span class="require_mark">（必須）</span></label>
+                    <label class="col-md-2 control-label">著者</label>
                     <div class="col-md-10">
                       <input class="form-control" type="text" name="authors" placeholder="例）Masaki Aida" th:value="*{authors}" />
                       <div class="text-danger" th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}"></div>

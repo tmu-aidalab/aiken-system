@@ -40,6 +40,16 @@
     width: 85%;
 }
 
+.selectpicker {
+    padding: 5px;
+    cursor: pointer;
+}
+
+/* cursor: pointer;が適用されない */
+.selectpicker:hover {
+    cursor: pointer;
+}
+
 .require_mark {
     color: red;
     font-size: 11px;
