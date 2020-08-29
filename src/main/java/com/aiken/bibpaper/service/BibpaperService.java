@@ -2,14 +2,17 @@ package com.aiken.bibpaper.service;
 
 import java.util.List;
 
+import com.aiken.bibpaper.domain.Bibpaper;
+import com.aiken.bibpaper.domain.sort.BibpaperSort;
+import com.aiken.bibpaper.mapper.BibpaperMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aiken.bibpaper.domain.Bibpaper;
-import com.aiken.bibpaper.mapper.BibpaperMapper;
-import com.aiken.bibpaper.domain.sort.BibpaperSort;
-
+// システム内の論文検索ロジックを提供
 @Service
 public class BibpaperService {
 
@@ -19,6 +22,11 @@ public class BibpaperService {
     @Transactional
     public List<Bibpaper> findAll() {
         return bibpaperMapper.findAll();
+    }
+
+    @Transactional
+    public Page<Bibpaper> findAll(Pageable pageable) {
+        return bibpaperMapper.findAll(pageable);
     }
 
     @Transactional

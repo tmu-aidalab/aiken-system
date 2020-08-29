@@ -6,6 +6,10 @@
                       bibitem_source, bibpaper.remark
                     from bibpaper
                     where delete_flag=FALSE
+    limit
+        #{pageable.Pagesize}
+    offset
+        #{pageable.offset}
   </select>
 
   <select id="findOne" resultType="com.aiken.bibpaper.domain.Bibpaper">

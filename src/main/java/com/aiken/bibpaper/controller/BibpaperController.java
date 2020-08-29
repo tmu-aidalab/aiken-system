@@ -1,26 +1,21 @@
 package com.aiken.bibpaper.controller;
 
+import com.aiken.bibpaper.domain.Bibpaper;
+import com.aiken.bibpaper.domain.sort.BibpaperSorter;
+import com.aiken.bibpaper.service.BibpaperService;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Map;
-
-import com.aiken.bibpaper.service.BibpaperService;
-import com.aiken.bibpaper.domain.sort.BibpaperSort;
-import com.aiken.bibpaper.domain.sort.BibpaperSorter;
-
+// List 型を使って定義している初期の Controller
 @Controller
 @RequestMapping("/")
 public class BibpaperController {
@@ -29,8 +24,10 @@ public class BibpaperController {
     private BibpaperService bibpaperService;
 
     @GetMapping
-    public String index(Model model) {
-        model.addAttribute("bibpapers", bibpaperService.findAll());
+    public String index(@PageableDefault(page = 0, size = 10) Pageable pageable, Model model) {
+        Page<Bibpaper> bibpaperPage = bibpaperService.findAll(pageable);
+        model.addAttribute("page", bibpaperPage);
+        model.addAttribute("bibpapers", bibpaperPage.getContent());
         return "index";
     }
 
@@ -79,6 +76,7 @@ public class BibpaperController {
         model.addAttribute("bibpapers", bibpaperService.findViewLogCount(sorting, search_key, keyword));
         return "index";
     }
+
     /*
      * PostMapping PutMapping DeleteMapping の参考となるように残しておく
      * 
@@ -94,5 +92,16 @@ public class BibpaperController {
      * 
      * @DeleteMapping("{id}") public String delete(@PathVariable Long id) {
      * itemService.delete(id); return "redirect:/items"; }
+     */
+    /*
+     * @GetMapping("/") public String list(Pageable pageable, Model model) {
+     * 
+     * Page<Bibpaper> page = BibpaperService.findAll(pageable); // Page<Bibpaper>
+     * page = bibpaperService.findRecentRegisterBibpaper(search_key, // keyword,
+     * sorting, pageable); // (2)
+     * 
+     * model.addAttribute("page", page); // (3)
+     * 
+     * return "article/list"; }
      */
 }
