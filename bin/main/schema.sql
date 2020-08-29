@@ -2,10 +2,18 @@ CREATE TABLE IF NOT EXISTS user (
   id bigint(20) NOT NULL AUTO_INCREMENT,
   name varchar(60),
   mail_address varchar(100),
+  password varchar(100),
   user_icon varchar(10),
-  register_date timestamp,
+  register_date timestamp default CURRENT_TIMESTAMP,
   graduate smallint,
-  last_login timestamp,
+  delete_flag boolean DEFAULT FALSE,
+  PRIMARY KEY (id),
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS user_last_login (
+  id bigint(20) NOT NULL AUTO_INCREMENT,
+  login_count bigint(20) default 0,
+  last_login timestamp DEFAULT CURRENT_TIMESTAMP,
   delete_flag boolean DEFAULT FALSE,
   PRIMARY KEY (id),
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
