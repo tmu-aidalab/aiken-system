@@ -5,6 +5,10 @@ public class RegisterUser {
 
     private String userName;
 
+    private int graduate;
+
+    private String image;
+
     private String email;
 
     private String password;
@@ -15,6 +19,22 @@ public class RegisterUser {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public int getGraduate() {
+        return graduate;
+    }
+
+    public void setGraduate(int graduate) {
+        this.graduate = graduate;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getEmail() {

@@ -5,11 +5,15 @@
 
     <insert id="insertUserInfo" parameterType="com.aiken.bibpaper.domain.login.RegisterUser">
         INSERT INTO
-            USER(NAME, mail_address, PASSWORD)
+            USER(NAME, mail_address, PASSWORD, user_icon, graduate)
         VALUES(
             #{userName},
             #{email},
-            #{password})
+            #{password},
+            #{image},
+            #{graduate});
+
+        INSERT INTO user_last_login(login_count) values (0);
     </insert>
 
 </mapper>

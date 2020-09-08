@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS user (
   name varchar(60),
   mail_address varchar(100),
   password varchar(100),
-  user_icon varchar(10),
+  user_icon varchar(200),
   register_date timestamp default CURRENT_TIMESTAMP,
   graduate smallint,
   delete_flag boolean DEFAULT FALSE,

@@ -3,36 +3,53 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="/css/styleLogin.css">
 <title>会員登録</title>
 </head>
 <body>
 
 
-<form th:action="@{/Register}" th:object="${registerUserForm}" method="POST">
+<form th:action="@{/Register}" th:object="${registerUserForm}" method="POST" enctype="multipart/form-data">
 
 <table align="center">
     <tr>
         <td>
-                ユーザ名：
+                ユーザ名<span class="require_mark">必須</span>：
         </td>
         <td>
-               <input type="text" th:field="*{userName}">
-        </td>
-    </tr>
-    <tr>
-        <td>
-                メールアドレス：
-        </td>
-        <td>
-               <input type="email" th:field="*{email}">
+               <input type="text" th:field="*{userName}" placeholder="nickname" required>
         </td>
     </tr>
     <tr>
         <td>
-                パスワード：
+                卒業（予定）年度<span class="require_mark">必須</span>：
         </td>
         <td>
-               <input type="password" th:field="*{password}">
+               <input type="number" min="2000" max="2099" value="2020" th:field="*{graduate}" required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+                ユーザーアイコン：
+        </td>
+        <td>
+               <input type="file" th:field="*{image}"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+                メールアドレス<span class="require_mark">必須</span>：
+        </td>
+        <td>
+               <input type="email" th:field="*{email}" placeholder="xxx@xxx" required>
+        </td>
+    </tr>
+    <tr>
+        <td>
+                パスワード<span class="require_mark">必須</span>：
+        </td>
+        <td>
+               <input type="password" th:field="*{password}" required>
         </td>
     </tr>
     <tr>
