@@ -26,7 +26,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordParameter("password").defaultSuccessUrl("/").permitAll();
 
         http.authorizeRequests().antMatchers("/RegistrationForm").permitAll().antMatchers("/Register").permitAll()
-                .antMatchers("/Result").permitAll().antMatchers("/js/**").permitAll().antMatchers("/css/**").permitAll()
+                .antMatchers("/Result").permitAll().antMatchers("/ResetPassword").permitAll().antMatchers("/Reset")
+                .permitAll().antMatchers("/js/**").permitAll().antMatchers("/css/**").permitAll()
                 .antMatchers("/static/**").permitAll().anyRequest().authenticated();
 
         http.logout().logoutSuccessUrl("/login").permitAll();

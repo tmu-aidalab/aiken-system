@@ -5,6 +5,9 @@ import javax.validation.Valid;
 import com.aiken.bibpaper.domain.login.RegisterUser;
 import com.aiken.bibpaper.domain.login.RegisterUserForm;
 import com.aiken.bibpaper.service.login.RegisterUserService;
+import com.aiken.bibpaper.domain.login.ResetPassword;
+import com.aiken.bibpaper.domain.login.ResetPasswordForm;
+import com.aiken.bibpaper.service.login.ResetPasswordService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,9 @@ public class RegisterUserController {
     @Autowired
     private RegisterUserService registerUserService;
 
+    @Autowired
+    private ResetPasswordService resetPasswordService;
+
     /**
      * 会員情報入力画面に遷移する。
      */
@@ -38,6 +44,16 @@ public class RegisterUserController {
 
         // 会員情報入力画面。
         return "RegistrationForm";
+    }
+
+    // パスワード再設定画面への遷移
+    @GetMapping("ResetPassword")
+    public String showResetPasswordForm(Model model) {
+
+        model.addAttribute(new ResetPasswordForm());
+
+        // パスワード再設定画面
+        return "ResetPassword";
     }
 
     @PostMapping("Register")
@@ -85,5 +101,21 @@ public class RegisterUserController {
         registerUserService.registerUser(entity);
 
         return "Result";
+    }
+
+    @PostMapping("Reset")
+    public String resetUserPassword(@Valid @ModelAttribute ResetPasswordForm resetPasswordForm, BindingResult result)
+            throws Exception {
+
+        // USERテーブルをupdateする時の引数。
+        ResetPassword entity = new ResetPassword();
+
+        entity.setEmail(resetPasswordForm.getEmail());
+        entity.setNewPassword(resetPasswordForm.getNewPassword());
+
+        // USERテーブルをupdateする。
+        resetPasswordService.resetPassword(entity);
+
+        return "ResetPasswordResult";
     }
 }
