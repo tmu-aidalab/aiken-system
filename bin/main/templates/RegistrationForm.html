@@ -3,65 +3,72 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="/css/styleLogin.css">
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
 <title>会員登録</title>
 </head>
 <body>
-
-
+<div class="card" style="width: 500px; margin: 0 auto;">
+<article class="card-body">
 <form th:action="@{/Register}" th:object="${registerUserForm}" method="POST" enctype="multipart/form-data">
+    <h2 class="card-title text-center mb-4 mt-1">会田研究室文献管理システム</h2>
+    <hr>
+    <p class="text-success text-center">会員登録</p>
 
-<table align="center">
-    <tr>
-        <td>
-                ユーザ名<span class="require_mark">必須</span>：
-        </td>
-        <td>
-               <input type="text" th:field="*{userName}" placeholder="nickname" required>
-        </td>
-    </tr>
-    <tr>
-        <td>
-                卒業（予定）年度<span class="require_mark">必須</span>：
-        </td>
-        <td>
-               <input type="number" min="2000" max="2099" value="2020" th:field="*{graduate}" required>
-        </td>
-    </tr>
-    <tr>
-        <td>
-                ユーザーアイコン：
-        </td>
-        <td>
-               <input type="file" th:field="*{image}"/>
-        </td>
-    </tr>
-    <tr>
-        <td>
-                メールアドレス<span class="require_mark">必須</span>：
-        </td>
-        <td>
-               <input type="email" th:field="*{email}" placeholder="xxx@xxx" required>
-        </td>
-    </tr>
-    <tr>
-        <td>
-                パスワード<span class="require_mark">必須</span>：
-        </td>
-        <td>
-               <input type="password" th:field="*{password}" required>
-        </td>
-    </tr>
-    <tr>
-        <td>
-        </td>
-        <td align="right">
-            <button type="submit">登録</button>
-        </td>
-    </tr>
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend input_item">
+            <span class="input-group-text input_item">ユーザ名</span>
+        </div>
+        <input type="text" th:field="*{userName}" placeholder="nickname" class="form-control" required>
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
 
-</table>
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend input_item">
+            <span class="input-group-text input_item">卒業（予定）年度</span>
+        </div>
+        <input type="number" min="2000" max="2099" value="2020" class="form-control" th:field="*{graduate}" required>
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend input_item">
+            <span class="input-group-text input_item">ユーザーアイコン</span>
+        </div>
+        <input type="file" class="form-control" style = "border-right: 0px solid white; 
+        border-top: 0px solid white; border-bottom: 0px solid white;" th:field="*{image}"/>
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend input_item">
+            <span class="input-group-text input_item">メールアドレス</span>
+        </div>
+        <input type="email" class="form-control" th:field="*{email}" placeholder="xxx@xxx" required>
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+    <div class="input-group">
+        <div class="input-group-prepend input_item">
+            <span class="input-group-text input_item">パスワード</span>
+        </div>
+        <input type="password" class="form-control" th:field="*{password}" required>
+    </div> <!-- input-group.// -->
+    </div> <!-- form-group// -->
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block">登録</button>
+    </div> <!-- form-group// -->
 </form>
-
+</article>
+</div>
+<script src="/js/jquery-3.4.1.min"></script>
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
