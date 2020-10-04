@@ -7,6 +7,7 @@
   <title>論文新規</title>
 </head>
 <body>
+  <header>test</header>
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
@@ -22,7 +23,7 @@
         <div class="card-body">
               <form th:method="post" th:action="@{/}" th:object="${bibpaper}">
                 <div class="form-group row">
-                    <label class="col-md-2 control-label">カテゴリ</label>
+                    <label class="col-md-2 control-label">カテゴリ名</label>
                     <div class="col-md-10">
                       <input class="form-control" type="text" name="category" th:value="*{category}" />
                       <div class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>

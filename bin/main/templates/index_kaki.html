@@ -1,0 +1,111 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <title>トップページ</title>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">論文表示デモ</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="card card-primary mb-3">
+            <div class="card-header text-center">
+                <table>
+                    <h5>
+                        <tr name="sort">
+                            <!--
+                <input type="search" name="search" placeholder="キーワードを入力" th:value="${search_value}">
+                <a href="#" th:href="@{/search/bib/{title}/{sorting}(title=${'aaa'},sorting=${'DESC'})}">
+                  <input type="submit" name="submit" value="検索" onclick="makeUrl()">
+                </a>
+              -->
+                            <input type="search" id="search_word" placeholder="キーワードを入力">
+                            <!-- <a href="#" id="search_paper" th:href="@{/}"></a> -->
+                            <input type="submit" name="submit" value="検索" onclick="makeUrl()">
+                            <select name="key" id="key">
+                                <option>regist</option>
+                                <option>view</option>
+                                <option>update</option>
+                                <option>freq</option>
+                            </select>
+                            <select name="sort" id="sort">
+                                <option value="new">新着順</option>
+                                <option value="old">古い順</option>
+                            </select>
+
+                            <script>
+                                function makeUrl() {
+                                    const text = document.getElementById("search_word").value;
+                                    const current = document.getElementById("search_paper");
+                                    const sortMethodIndex = document.getElementById("sort").selectedIndex;
+                                    const sortKeyIndex = document.getElementById("key").selectedIndex;
+                                    let sortMethod;
+                                    let keyMethod;
+
+                                    // 何を基準に検索結果をソートするか
+                                    if (sortKeyIndex == 0) {
+                                        keyMethod = "regist";
+                                    } else if (sortKeyIndex == 1) {
+                                        keyMethod = "view";
+                                    } else if (sortKeyIndex == 2) {
+                                        keyMethod = "update";
+                                    } else {
+                                        keyMethod = "freq";
+                                    }
+
+                                    // 検索結果を降順か昇順か決める
+                                    if (sortMethodIndex == 0) {
+                                        sortMethod = "DESC";
+                                        // console.log(sortMethod);
+                                    } else {
+                                        sortMethod = "ASC";
+                                        // console.log(sortMethod);
+                                    }
+
+                                    // /search/view?search_key=title&keyword=(textbox)&sorting=DESC
+                                    location.href = "/search/" + keyMethod + "?search_key=title&keyword=" + text + "&sorting=" + sortMethod;
+                                }
+                            </script>
+
+                            <a href="/bibpaper/new" class="btn btn-success float-right">登録</a>
+                        </tr>
+                    </h5>
+                </table>
+            </div>
+            <div class="card-body" th:if="!${bibpapers.size()}">
+                <p>論文データがありません。</p>
+            </div>
+            <table class="table table-striped" th:if="${bibpapers.size()}">
+                <thead>
+                    <tr>
+                        <th style="width: 10%">id</th>
+                        <th style="width: 50%">タイトル</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="bibpaper:${bibpapers}" th:object="${bibpaper}">
+                        <td th:text="*{id}"></td>
+                        <td th:text="*{title}"></td>
+                        <td class="float-right">
+                            <form th:action="@{/bibpapers/{id}(id=*{id})}" th:method="delete">
+                                <a class="btn btn-primary" th:href="@{/bibpapers/{id}(id=*{id})}">詳細</a>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/js/jquery-3.4.1.min"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</body>
+
+</html>
