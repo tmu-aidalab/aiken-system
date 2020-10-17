@@ -47,23 +47,23 @@ public class BibpaperService {
     }
 
     @Transactional
-    public List<Bibpaper> findRecentViewBibpaper(String sorting) {
-        return bibpaperMapper.findRecentViewBibpaper(sorting);
+    public List<Bibpaper> findRecentViewBibpaper(String sorting, String search_key, String keyword) {
+        return bibpaperMapper.findRecentViewBibpaper(sorting, search_key, keyword);
     }
 
     @Transactional
-    public List<Bibpaper> findRecentRegisterBibpaper(String sorting) {
-        return bibpaperMapper.findRecentRegisterBibpaper(sorting);
+    public List<Bibpaper> findRecentRegisterBibpaper(String sorting, String search_key, String keyword) {
+        return bibpaperMapper.findRecentRegisterBibpaper(sorting, search_key, keyword);
     }
 
     @Transactional
-    public List<Bibpaper> findRecentUpdateBibpaper(String sorting) {
-        return bibpaperMapper.findRecentUpdateBibpaper(sorting);
+    public List<Bibpaper> findRecentUpdateBibpaper(String sorting, String search_key, String keyword) {
+        return bibpaperMapper.findRecentUpdateBibpaper(sorting, search_key, keyword);
     }
 
     @Transactional
-    public List<Bibpaper> findViewLogCount(String sorting) {
-        return bibpaperMapper.findViewLogCount(sorting);
+    public List<Bibpaper> findViewLogCount(String sorting, String search_key, String keyword) {
+        return bibpaperMapper.findViewLogCount(sorting, search_key, keyword);
     }
 
     @Transactional
