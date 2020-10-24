@@ -63,3 +63,8 @@ INSERT into search_log (user_id, time_stamp, query, search_result) values ( 1, '
 INSERT into search_log (user_id, time_stamp, query, search_result) values ( 1, '1999-01-08 04:05:12', 'ccc', '[1,2]');
 
 INSERT into search_log (user_id, time_stamp, query, search_result) values ( 1, '1999-01-08 04:05:12', 'ddd', '[1,2]');
+/*
+insert into user_last_login(id, login_count) values (1, 0);
+
+insert into user_last_login(id, login_count) values (2, 0);
+*/

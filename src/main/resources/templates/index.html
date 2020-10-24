@@ -74,10 +74,12 @@
         </tbody>
       </table>
     </div>
-  </div>
-  <script src="/js/jquery-3.4.1.min.js"></script>
-  <script src="/js/bootstrap.min.js"></script>
-  <script src="/js/index.js"></script>
-</body>
-
+    <form role="form" id="logout" th:action="@{/logout}" method="post">
+      <button type="submit">ログアウト</button>
+    </form>
+    <script src="/js/jquery-3.4.1.min"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/index.js"></script>
+  </body>
 </html>
+
