@@ -4,97 +4,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/styleNew.css">
   <title>論文新規</title>
 </head>
 <body>
-  <header>test</header>
+  <header>
+    <div class="header">
+      <div class="icon">
+        <span>アイコン</span>
+      </div>
+      <div class="face">
+       <span>顔</span>
+      </div>
+    </div>
+  </header>
   <nav class="navbar navbar-inverse">
-    <div class="container">
+    <div class="container"></div>
       <div class="navbar-header">
-        <a class="navbar-brand" href="/">論文管理デモ</a>
+        <a class="navbar-brand" href="/">一覧に戻る</a>
       </div>
     </div>
     </nav>
   <div class="container">
     <div class="card card-primary mb-3">
           <div class="card-header">
-            <h5 class="card-title">論文新規</h5>
+            <h5 class="card-title">論文登録</h5>
+            <button class="btn btn-success btn-bibtex-header">BibTeXで追加</button>
           </div>
         <div class="card-body">
               <form th:method="post" th:action="@{/}" th:object="${bibpaper}">
                 <div class="form-group row">
                     <label class="col-md-2 control-label">カテゴリ名</label>
                     <div class="col-md-10">
-                      <input class="form-control" type="text" name="category" th:value="*{category}" />
+                      <!-- <input class="form-control" type="text" name="category" th:value="*{category}" /> -->
+                      <select class="selectpicker" type="text" name="category" th:value="*{category}">
+                        <option value="1">社会ネットワーク</option>
+                        <option value="2">自律分散制御</option>
+                        <option value="99">その他</option>
+                      </select>
                       <div class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="col-md-2 control-label">タイトル</label>
+                    <label class="col-md-2 control-label">タイトル<span class="require_mark">必須</span></label>  
                     <div class="col-md-10">
-                      <input class="form-control" type="text" name="title" th:value="*{title}"/>
+                      <input id='test' class="form-control form-title" type="text" name="title" placeholder="例）user dynamics" th:value="*{title}"/>
+                      
                       <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <label class="col-md-2 control-label">著者</label>
                     <div class="col-md-10">
-                      <input class="form-control" type="text" name="authors" th:value="*{authors}" />
+                      <input class="form-control form-authors" type="text" name="authors" placeholder="例）Masaki Aida" th:value="*{authors}" />
                       <div class="text-danger" th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}"></div>
                     </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 control-label">アブストラクト</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" th:field="*{abst}" name="abst" th:value="*{abst}"></textarea>
+                    <textarea class="form-control form-abst" type="text" placeholder="Abstractを入力してください" th:field="*{abst}" name="abst" th:value="*{abst}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('abst')}" th:errors="*{abst}"></div>
                   </div>
                 </div>
+
                 <div class="form-group row">
-                  <label class="col-md-2 control-label">概要</label>
+                  <label class="col-md-2 control-label">要約・感想<span class="require_mark">必須</span>
+                  </label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" th:field="*{descript}" name="descript" th:value="*{descript}"></textarea>
+                    <textarea class="form-control form-descript" type="text" placeholder="簡単な要約や感想などを入力してください" th:field="*{descript}" name="descript" th:value="*{descript}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('descript')}" th:errors="*{descript}"></div>
                   </div>
                 </div>
+
                 <div class="form-group row">
                   <label class="col-md-2 control-label">ハッシュタグ</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" name="hash_tag" th:value="*{hash_tag}" />
+                    <input class="form-control form-hash_tag" type="text" name="hash_tag" placeholder="例）社会ネットワーク, ユーザダイナミクス（カンマ区切り）" th:value="*{hash_tag}" />
                     <div class="text-danger" th:if="${#fields.hasErrors('hash_tag')}" th:errors="*{hash_tag}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-2 control-label">ハイパーリンク </label>
+                  <label class="col-md-2 control-label">ハイパーリンク<span class="require_mark">必須</span></label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" name="hyperlink" th:value="*{hyperlink}" />
+                    <input class="form-control form-hyperlink" type="text" name="hyperlink" placeholder="URLを入力してください" th:value="*{hyperlink}" />
                     <div class="text-danger" th:if="${#fields.hasErrors('hyperlink')}" th:errors="*{hyperlink}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 control-label">bibtex</label>
+                  
                   <div class="col-md-10">
-                    <input class="form-control" type="text" name="bibtex_source" th:value="*{bibtex_source}" />
+                    <input class="form-control bibtex_source form-bibtex_source" type="text" name="bibtex_source" placeholder="bibtex形式で入力してください" th:value="*{bibtex_source}" />
+                    <button type="button" class="btn btn-success btn-bibtex">BibTeXで追加</button>
+                    
                     <div class="text-danger" th:if="${#fields.hasErrors('bibtex_source')}" th:errors="*{bibtex_source}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 control-label">bibitem</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" name="bibitem_source" th:value="*{bibitem_source}" />
+                    <input class="form-control form-bibitem_source" type="text" name="bibitem_source" placeholder="bibitem形式で入力してください" th:value="*{bibitem_source}" />
                     <div class="text-danger" th:if="${#fields.hasErrors('bibitem_source')}" th:errors="*{bibitem_source}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
                   <label class="col-md-2 control-label">備考</label>
                   <div class="col-md-10">
-                    <textarea class="form-control" type="text" th:field="*{remark}" name="remark" th:value="*{remark}"></textarea>
+                    <textarea class="form-control form-remark" type="text" placeholder="補足などあれば自由に入力してください" th:field="*{remark}" name="remark" th:value="*{remark}"></textarea>
                     <div class="text-danger" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}"></div>
                   </div>
                 </div>
                 <div class="form-group row">
-                    <div class="offset-md-2 col-md-10">
-                      <button class="btn btn-primary">新規</button>
+                    <div class="offset-md-2 col-md-10 new_btn">
+                      <button class="btn btn-primary">登録</button>
                     </div>
                 </div>
             </form>
@@ -103,5 +126,6 @@
     </div>
     <script src="/js/jquery-3.4.1.min"></script>
   <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/new.js"></script>
 </body>
 </html>
