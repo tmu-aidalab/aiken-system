@@ -4,36 +4,90 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
-  <title>商品詳細</title>
+  <link rel="stylesheet" href="/css/styleNew.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
+  <title>論文詳細</title>
 </head>
 <body>
+  <header>
+    <div class="header">
+      <div class="icon">
+        <span>アイコン　⭐️</span>
+      </div>
+      <div class="face">
+       <span>😆</span>
+      </div>
+    </div>
+  </header>
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/items">商品管理デモ</a>
+        <a class="navbar-brand" href="/">一覧に戻る</a>
       </div>
     </div>
-    </nav>
+  </nav>
   <div class="container">
     <div class="card card-primary mb-3">
         <div class="card-header">
-          <h5 class="card-title">商品詳細</h5>
+          <h5 class="card-title" style="float: left; margin-right: 20px">論文詳細</h5>
+          <i class="fab fa-slack"></i>
+          <form th:action="@{/{id}(id=*{id})}" th:method="delete">
+            <div style="float: right; margin-left: 20px">
+              <button class="btn btn-primary" onClick="return confirm('本当に削除しますか？')">削除</button>
+            </div>
+            <div style="float: right;">
+              <a class="btn btn-primary" th:href="@{/{id}/edit(id=*{id})}">編集</a>
+            </div>
         </div>
+          </form>
       <div class="card-body">
-            <div th:object="${item}">
-              <div class="form-group row">
-                <label class="col-md-2">商品名</label>
-            <div class="col-md-10" th:text="*{name}"></div>
+            <div th:each="bibpaper:${bibpapers}" th:object="${bibpaper}">
+                <div class="form-group row">
+                  <label class="col-md-2">カテゴリ名</label>
+                  <div class="col-md-10" th:text="*{category}"></div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-2 control-label">価格</label>
-                  <div class="col-md-10 form-control-static" th:text="*{price}"></div>
+                  <label class="col-md-2 control-label">タイトル</label>
+                  <div class="col-md-10 form-control-static" th:text="*{title}"></div>
                 </div>
                 <div class="form-group row">
-                  <label class="col-md-2 control-label">ベンダー</label>
-                  <div class="col-md-10 form-control-static" th:text="*{vendor}"></div>
+                  <label class="col-md-2 control-label">著者</label>
+                  <div class="col-md-10 form-control-static" th:text="*{authors}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">アブストラクト</label>
+                  <div class="col-md-10 form-control-static" th:text="*{abst}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">概要</label>
+                  <div class="col-md-10 form-control-static" th:text="*{descript}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">ハッシュタグ</label>
+                  <div class="col-md-10 form-control-static" th:text="*{hash_tag}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">pdfリンク</label>
+                  <div class="col-md-10 form-control-static" th:text="*{hyperlink}"></div>
+                  <a href="*{hyperlink}"><button type="button" class="btn btn-primary">ダウンロード</button></a>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">TeX形式</label>
+                  <div class="col-md-10 form-control-static" th:text="*{bibtex_source}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">bibTeX</label>
+                  <div class="col-md-10 form-control-static" th:text="*{bibitem_source}"></div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-md-2 control-label">備考</label>
+                  <div class="col-md-10 form-control-static" th:text="*{remark}"></div>
                 </div>
         </div>
+      </div>
+      <div class = "card-footer">
+        <a href="/">前へ</a>
+        <a href="/" style="float: right;">次へ</a>
       </div>
     </div>
     </div>

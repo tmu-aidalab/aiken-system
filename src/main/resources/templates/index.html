@@ -51,7 +51,7 @@
                   <td th:text="*{remark}"></td>
                   <td class="float-right">
                     <form th:action="@{/bibpapers/{id}(id=*{id})}" th:method="delete">
-                      <a class="btn btn-primary" th:href="@{/bibpapers/{id}(id=*{id})}">詳細</a>
+                      <a class="btn btn-primary" th:href="@{/{id}(id=*{id})}">詳細</a>
                       <a class="btn btn-primary" th:href="@{/bibpapers{id}/edit(id=*{id})}">変更</a>
                   <button class="btn btn-primary">削除</button>
                 </form>

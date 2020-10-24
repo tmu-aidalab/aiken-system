@@ -4,42 +4,91 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/css/bootstrap.min.css" />
-  <title>商品情報変更</title>
+  <title>論文情報変更</title>
 </head>
 <body>
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
-        <a class="navbar-brand" href="/items">商品管理デモ</a>
+        <a class="navbar-brand" href="/">論文管理デモ</a>
       </div>
     </div>
     </nav>
   <div class="container">
     <div class="card card-primary mb-3">
         <div class="card-header">
-          <h5 class="card-title">商品詳細</h5>
+          <h5 class="card-title">論文詳細</h5>
         </div>
       <div class="card-body">
-        <form th:action="@{/items/{id}(id=*{id})}" th:method="put" th:object="${item}">
+        <form th:action="@{/{id}(id=*{id})}" th:method="put" th:object="${bibpaper}">
               <div class="form-group row">
-                  <label class="col-md-2 control-label">商品名</label>
+                  <label class="col-md-2 control-label">カテゴリ</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" th:field="*{name}" />
-                    <div class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                    <input class="form-control" type="text" th:field="*{category}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
                   </div>
               </div>
               <div class="form-group row">
-                  <label class="col-md-2 control-label">価格</label>
+                  <label class="col-md-2 control-label">タイトル</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" th:field="*{price}" />
-                    <div class="text-danger" th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+                    <input class="form-control" type="text" th:field="*{title}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
                   </div>
               </div>
               <div class="form-group row">
-                  <label class="col-md-2 control-label">ベンダー</label>
+                  <label class="col-md-2 control-label">著者</label>
                   <div class="col-md-10">
-                    <input class="form-control" type="text" th:field="*{vendor}" />
-                    <div class="text-danger" th:if="${#fields.hasErrors('vendor')}" th:errors="*{vendor}"></div>
+                    <input class="form-control" type="text" th:field="*{authors}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('authors')}" th:errors="*{authors}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">アブストラクト</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{abst}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('abst')}" th:errors="*{abst}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">概要</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{descript}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('descript')}" th:errors="*{descript}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">ハッシュタグ</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{hash_tag}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('hash_tag')}" th:errors="*{hash_tag}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">ハイパーリンク</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{hyperlink}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('hyperlink')}" th:errors="*{hyperlink}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">bibtex</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{bibtex_source}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('bibtex_source')}" th:errors="*{bibtex_source}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">bibitem</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{bibitem_source}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('bibitem_source')}" th:errors="*{bibitem_source}"></div>
+                  </div>
+              </div>
+              <div class="form-group row">
+                  <label class="col-md-2 control-label">備考</label>
+                  <div class="col-md-10">
+                    <input class="form-control" type="text" th:field="*{remark}" />
+                    <div class="text-danger" th:if="${#fields.hasErrors('remark')}" th:errors="*{remark}"></div>
                   </div>
               </div>
               <div class="form-group row">

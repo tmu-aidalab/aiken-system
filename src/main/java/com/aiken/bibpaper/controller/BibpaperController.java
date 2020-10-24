@@ -1,5 +1,10 @@
 package com.aiken.bibpaper.controller;
 
+import com.aiken.bibpaper.domain.Bibpaper;
+import com.aiken.bibpaper.domain.sort.BibpaperSort;
+import com.aiken.bibpaper.domain.sort.BibpaperSorter;
+import com.aiken.bibpaper.service.BibpaperService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
-import java.util.List;
-import java.util.Map;
-
-import com.aiken.bibpaper.service.BibpaperService;
-import com.aiken.bibpaper.domain.Bibpaper;
-import com.aiken.bibpaper.domain.sort.BibpaperSort;
-import com.aiken.bibpaper.domain.sort.BibpaperSorter;
 
 @Controller
 @RequestMapping("/")
@@ -43,7 +39,13 @@ public class BibpaperController {
     @GetMapping("{id}")
     public String findOne(@PathVariable Long id, Model model) {
         model.addAttribute("bibpapers", bibpaperService.findOne(id));
-        return "index";
+        return "show";
+    }
+
+    @GetMapping("{id}/edit")
+    public String edit(@PathVariable Long id, @ModelAttribute("bibpaper") Bibpaper bibpaper, Model model) {
+        model.addAttribute("bibpaper", bibpaperService.findOne(id));
+        return "edit";
     }
 
     @GetMapping("search/bib/{title}/{sorting}")
@@ -107,6 +109,25 @@ public class BibpaperController {
             bibpaperService.save(bibpaper);
             return "redirect:/";
         }
+    }
+
+    @PutMapping("{id}")
+    public String update(@PathVariable Long id, @ModelAttribute("bibpaper") @Validated Bibpaper bibpaper,
+            BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("bibpaper", bibpaper);
+            return "edit";
+        } else {
+            bibpaper.setId(id);
+            bibpaperService.update(bibpaper);
+            return "redirect:/{id}";
+        }
+    }
+
+    @DeleteMapping("{id}")
+    public String delete(@PathVariable Long id) {
+        bibpaperService.delete(id);
+        return "redirect:/";
     }
 
     /*

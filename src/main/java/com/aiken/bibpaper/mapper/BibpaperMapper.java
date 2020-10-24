@@ -2,17 +2,17 @@ package com.aiken.bibpaper.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import com.aiken.bibpaper.domain.Bibpaper;
 import com.aiken.bibpaper.domain.sort.BibpaperSort;
+
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface BibpaperMapper {
     List<Bibpaper> findAll();
 
-    List<Bibpaper> findOne(Long id);
+    Bibpaper findOne(Long id);
 
     void save(Bibpaper bibpaper);
 
