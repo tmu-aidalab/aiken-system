@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.aiken.bibpaper.mapper.login.LoginMapper">
+
+    <select id="findUserAccount" resultType="com.aiken.bibpaper.domain.login.UserAccount" parameterType="String">
+        select name, password from user where mail_address = #{email}
+    </select>
+
+    <select id="loginUserId" resultType="Long" parameterType="String">
+        select Id from user where mail_address = #{email}
+    </select>
+
+    <select id="userLoginCount" resultType="Long" parameterType="Long">
+        select login_count from user_last_login where id = #{id}
+    </select>
+
+    <update id="insertLoginCount">
+        update user_last_login set login_count = #{loginCount}, last_login = current_timestamp where id = #{id}
+    </update>
+</mapper>
