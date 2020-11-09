@@ -38,4 +38,6 @@ public interface BibpaperMapper {
 
         void registerHashtag(String hashTag);
 
+        String findCategory(Long id);
+
 }

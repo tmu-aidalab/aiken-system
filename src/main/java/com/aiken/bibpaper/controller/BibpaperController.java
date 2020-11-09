@@ -39,6 +39,7 @@ public class BibpaperController {
     @GetMapping("{id}")
     public String findOne(@PathVariable Long id, Model model) {
         model.addAttribute("bibpapers", bibpaperService.findOne(id));
+        model.addAttribute("bibpaperCategory", bibpaperService.findCategory(bibpaperService.findOne(id).getId()));
         return "show";
     }
 

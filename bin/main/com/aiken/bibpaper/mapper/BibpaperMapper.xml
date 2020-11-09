@@ -93,4 +93,10 @@
     where NOT EXISTS (select * from hash_tag where hash_tag = #{hashTag})
   </insert>
 
+  <select id="findCategory" resultType="String">
+    select category.category
+    from bibpaper inner join category on bibpaper.category = category.id
+    where bibpaper.id= #{id} and bibpaper.delete_flag=FALSE
+  </select>
+
 </mapper>

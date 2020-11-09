@@ -75,4 +75,9 @@ public class BibpaperService {
     public void registerHashtag(String hashTag) {
         bibpaperMapper.registerHashtag(hashTag);
     }
+
+    @Transactional
+    public String findCategory(Long id) {
+        return bibpaperMapper.findCategory(id);
+    }
 }
