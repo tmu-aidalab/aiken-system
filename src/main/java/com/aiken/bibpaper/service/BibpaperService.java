@@ -80,4 +80,9 @@ public class BibpaperService {
     public String findCategory(Long id) {
         return bibpaperMapper.findCategory(id);
     }
+
+    @Transactional
+    public int checkTitleDuplication(String title) {
+        return bibpaperMapper.checkTitleDuplication(title);
+    }
 }

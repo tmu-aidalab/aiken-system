@@ -64,8 +64,8 @@ INSERT into search_log (user_id, time_stamp, query, search_result) values ( 1, '
 
 INSERT into search_log (user_id, time_stamp, query, search_result) values ( 1, '1999-01-08 04:05:12', 'ddd', '[1,2]');
 
-INSERT into category(id, category) values (1, '情報ネットワーク');
+INSERT into category(id, category) values (1, '社会ネットワーク');
 
-INSERT into category(id, category) values (2, '自立分散制御');
+INSERT into category(id, category) values (2, '自律分散制御');
 
-INSERT into category(id, category) values (3, 'その他');
+INSERT into category(id, category) values (99, 'その他');

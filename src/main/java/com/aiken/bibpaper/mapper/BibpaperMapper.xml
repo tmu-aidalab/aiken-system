@@ -99,4 +99,10 @@
     where bibpaper.id= #{id} and bibpaper.delete_flag=FALSE
   </select>
 
+  <select id="checkTitleDuplication" resultType="int">
+    select count(*)
+    from bibpaper
+    where title = #{title} and delete_flag=FALSE
+  </select>
+
 </mapper>

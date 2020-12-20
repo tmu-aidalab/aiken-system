@@ -40,4 +40,6 @@ public interface BibpaperMapper {
 
         String findCategory(Long id);
 
+        int checkTitleDuplication(String title);
+
 }

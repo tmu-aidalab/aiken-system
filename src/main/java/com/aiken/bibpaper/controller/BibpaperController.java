@@ -33,6 +33,8 @@ public class BibpaperController {
 
     @GetMapping("new")
     public String newBibpaper(@ModelAttribute("bibpaper") Bibpaper bibpaper, Model model) {
+        boolean flag = false;
+        model.addAttribute("duplicateTitle", flag);
         return "new";
     }
 
@@ -93,6 +95,10 @@ public class BibpaperController {
     public String registerBibpaper(@ModelAttribute("bibpaper") @Validated Bibpaper bibpaper, BindingResult result,
             Model model) {
         if (result.hasErrors()) {
+            return "new";
+        } else if (bibpaperService.checkTitleDuplication(bibpaper.getTitle()) >= 1) {
+            boolean flag = true;
+            model.addAttribute("duplicateTitle", flag);
             return "new";
         } else {
             String[] authorsList = bibpaper.getAuthors().split(",", 0);
