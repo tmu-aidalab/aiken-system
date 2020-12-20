@@ -2,13 +2,13 @@ package com.aiken.bibpaper.service;
 
 import java.util.List;
 
+import com.aiken.bibpaper.domain.Bibpaper;
+import com.aiken.bibpaper.domain.sort.BibpaperSort;
+import com.aiken.bibpaper.mapper.BibpaperMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import com.aiken.bibpaper.domain.Bibpaper;
-import com.aiken.bibpaper.mapper.BibpaperMapper;
-import com.aiken.bibpaper.domain.sort.BibpaperSort;
 
 @Service
 public class BibpaperService {
@@ -22,7 +22,7 @@ public class BibpaperService {
     }
 
     @Transactional
-    public List<Bibpaper> findOne(Long id) {
+    public Bibpaper findOne(Long id) {
         return bibpaperMapper.findOne(id);
     }
 
@@ -74,5 +74,15 @@ public class BibpaperService {
     @Transactional
     public void registerHashtag(String hashTag) {
         bibpaperMapper.registerHashtag(hashTag);
+    }
+
+    @Transactional
+    public String findCategory(Long id) {
+        return bibpaperMapper.findCategory(id);
+    }
+
+    @Transactional
+    public int checkTitleDuplication(String title) {
+        return bibpaperMapper.checkTitleDuplication(title);
     }
 }
